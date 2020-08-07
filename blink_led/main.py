@@ -5,27 +5,33 @@ import time
 
 import RPi.GPIO as GPIO
 
-LED_PIN = 11
+GPIO_BOARD_LED = 11
 
 
 def setup():
+    """setup
+    """
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(LED_PIN, GPIO.OUT)
-    GPIO.output(LED_PIN, GPIO.LOW)
-    print('using pin {}'.format(LED_PIN))
+    GPIO.setup(GPIO_BOARD_LED, GPIO.OUT)
+    GPIO.output(GPIO_BOARD_LED, GPIO.LOW)
+    print('using pin {}'.format(GPIO_BOARD_LED))
 
 
 def destroy():
+    """destroy
+    """
     GPIO.cleanup()
 
 
 def loop():
+    """loop
+    """
     while True:
-        GPIO.output(LED_PIN, GPIO.HIGH)
-        print('on')
+        GPIO.output(GPIO_BOARD_LED, GPIO.HIGH)
+        print('>>> on')
         time.sleep(1)
-        GPIO.output(LED_PIN, GPIO.LOW)
-        print('off')
+        GPIO.output(GPIO_BOARD_LED, GPIO.LOW)
+        print('>>> off')
         time.sleep(1)
 
 
