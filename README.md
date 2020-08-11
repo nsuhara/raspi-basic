@@ -16,6 +16,7 @@
 | 4    | SSH接続                |                 |
 | 5    | VNC接続                |                 |
 | 6    | Python環境インストール | pyenv           |
+| 7    | FTPインストール        | vsftpd          |
 
 ### 実行環境
 
@@ -242,4 +243,49 @@ nameserver {secondary dns}
 
 ```command.sh
 ~$ pyenv global {version}
+```
+
+## 7. FTPインストール
+
+### FTPインストール
+
+```command.sh
+~$ sudo apt-get install vsftpd
+~$ sudo systemctl enable vsftpd
+~$ sudo systemctl start vsftpd
+~$ sudo systemctl status vsftpd
+```
+
+### FTP設定
+
+```command.sh
+~$ sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.org
+~$ sudo nano /etc/vsftpd.conf
+```
+
+```command.sh
+# Uncomment this to enable any form of FTP write command.
+- #write_enable=YES
++ write_enable=YES
+
+# Default umask for local users is 077. You may wish to change this to 022,
+# if your users expect that (022 is used by most other ftpd's)
+- #local_umask=022
++ local_umask=022
+
+# ASCII mangling is a horrible feature of the protocol.
+- #ascii_upload_enable=YES
+- #ascii_download_enable=YES
++ ascii_upload_enable=YES
++ ascii_download_enable=YES
+```
+
+```command.sh
+^O
+^X
+```
+
+```command.sh
+~$ sudo systemctl restart vsftpd
+~$ sudo systemctl status vsftpd
 ```
