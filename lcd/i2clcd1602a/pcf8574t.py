@@ -36,17 +36,17 @@ class LCD():
     def __init__(self):
         self.smbus = SMBus(self.SMBUS_REV2)
 
-        self._send(self.MODE_COMMAND, self.CMD_INITIALISE)
-        self._send(self.MODE_COMMAND, self.CMD_SET_4_BIT_MODE)
-        self._send(self.MODE_COMMAND, self.CMD_CURSOR_MOVE_DIRECTION)
-        self._send(self.MODE_COMMAND, self.CMD_TURN_CURSOR_OFF)
-        self._send(self.MODE_COMMAND, self.CMD_2_LINE_DISPLAY)
-        self._send(self.MODE_COMMAND, self.CMD_CLEAR_DISPLAY)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_INITIALISE)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_SET_4_BIT_MODE)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_CURSOR_MOVE_DIRECTION)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_TURN_CURSOR_OFF)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_2_LINE_DISPLAY)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_CLEAR_DISPLAY)
 
     def destroy(self):
         """destroy
         """
-        self._send(self.MODE_COMMAND, self.CMD_CLEAR_DISPLAY)
+        self._send(mode=self.MODE_COMMAND, bits=self.CMD_CLEAR_DISPLAY)
         self.smbus.close()
 
     def message(self, message, line):
@@ -56,16 +56,18 @@ class LCD():
         message = message[0:self.LINE_SIZE]
         message = message.ljust(self.LINE_SIZE, ' ')
 
-        self._send(self.MODE_COMMAND | self.MODE_OPTION_BACKLIGHT, line)
+        self._send(mode=self.MODE_COMMAND | self.MODE_OPTION_BACKLIGHT,
+                   bits=line)
 
         for char in message:
-            self._send(self.MODE_CHAR | self.MODE_OPTION_BACKLIGHT, ord(char))
+            self._send(mode=self.MODE_CHAR | self.MODE_OPTION_BACKLIGHT,
+                       bits=ord(char))
 
     def clear(self):
         """close
         """
-        self._send(self.MODE_COMMAND | self.MODE_OPTION_BACKLIGHT,
-                   self.CMD_CLEAR_DISPLAY)
+        self._send(mode=self.MODE_COMMAND | self.MODE_OPTION_BACKLIGHT,
+                   bits=self.CMD_CLEAR_DISPLAY)
 
     def off(self):
         """off
@@ -76,10 +78,10 @@ class LCD():
         """_send
         """
         higher_bits = mode | (bits & 0xF0)
-        self._write(higher_bits)
+        self._write(bits=higher_bits)
 
         lower_bit = mode | ((bits << 4) & 0xF0)
-        self._write(lower_bit)
+        self._write(bits=lower_bit)
 
     def _write(self, bits):
         """_write
@@ -97,12 +99,12 @@ class LCD():
         """loop
         """
         while True:
-            self.message('1234567890123456', self.LINE_1)
-            self.message('abcdefghijklmnop', self.LINE_2)
+            self.message(message='1234567890123456', line=self.LINE_1)
+            self.message(message='abcdefghijklmnop', line=self.LINE_2)
             time.sleep(2)
 
-            self.message('ABCDEFGHIJKLMNOP', self.LINE_1)
-            self.message('ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀ', self.LINE_2)
+            self.message(message='ABCDEFGHIJKLMNOP', line=self.LINE_1)
+            self.message(message='ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀ', line=self.LINE_2)
             time.sleep(2)
 
 

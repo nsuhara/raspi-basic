@@ -22,12 +22,12 @@ class Raspi():
         """loop
         """
         while True:
-            self.lcd.message('1234567890123456', self.lcd.LINE_1)
-            self.lcd.message('abcdefghijklmnop', self.lcd.LINE_2)
+            self.lcd.message(message='1234567890123456', line=self.lcd.LINE_1)
+            self.lcd.message(message='abcdefghijklmnop', line=self.lcd.LINE_2)
             time.sleep(2)
 
-            self.lcd.message('ABCDEFGHIJKLMNOP', self.lcd.LINE_1)
-            self.lcd.message('ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀ', self.lcd.LINE_2)
+            self.lcd.message(message='ABCDEFGHIJKLMNOP', line=self.lcd.LINE_1)
+            self.lcd.message(message='ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀ', line=self.lcd.LINE_2)
             time.sleep(2)
 
 
