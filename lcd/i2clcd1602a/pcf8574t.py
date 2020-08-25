@@ -1,10 +1,10 @@
-"""ic2lcd1602a/pcf8574t.py
+"""i2clcd1602a/pcf8574t.py
 """
 import time
 
-from smbus import SMBus
+from smbus2 import SMBus
 
-from ic2lcd1602a.katakana import convert
+from i2clcd1602a.katakana import convert
 
 
 class LCD():
@@ -47,6 +47,7 @@ class LCD():
         """destroy
         """
         self._send(self.MODE_COMMAND, self.CMD_CLEAR_DISPLAY)
+        self.smbus.close()
 
     def message(self, message, line):
         """message
@@ -69,7 +70,7 @@ class LCD():
     def off(self):
         """off
         """
-        self._send(self.MODE_COMMAND, self.CMD_CLEAR_DISPLAY)
+        self.destroy()
 
     def _send(self, mode, bits):
         """_send
@@ -95,15 +96,14 @@ class LCD():
     def loop(self):
         """loop
         """
-
         while True:
             self.message('1234567890123456', self.LINE_1)
             self.message('abcdefghijklmnop', self.LINE_2)
-            time.sleep(3)
+            time.sleep(2)
 
             self.message('ABCDEFGHIJKLMNOP', self.LINE_1)
             self.message('ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀ', self.LINE_2)
-            time.sleep(3)
+            time.sleep(2)
 
 
 if __name__ == '__main__':

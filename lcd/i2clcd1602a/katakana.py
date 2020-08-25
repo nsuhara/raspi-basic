@@ -1,4 +1,4 @@
-"""ic2lcd1602a/katakana.py
+"""i2clcd1602a/katakana.py
 """
 
 SP_CODE = 0xfec0
