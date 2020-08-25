@@ -52,7 +52,7 @@ class LCD():
     def message(self, message, line):
         """message
         """
-        message = convert(message)
+        message = convert(message=message)
         message = message[0:self.LINE_SIZE]
         message = message.ljust(self.LINE_SIZE, ' ')
 
