@@ -11,6 +11,8 @@ GPIO_BCM_L293D_IN2 = 22
 
 
 def setup():
+    """setup
+    """
     # GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(GPIO_BCM_L293D_EN1, GPIO.OUT)
@@ -19,22 +21,30 @@ def setup():
 
 
 def right():
+    """right
+    """
     GPIO.output(GPIO_BCM_L293D_EN1, GPIO.HIGH)
     GPIO.output(GPIO_BCM_L293D_IN1, GPIO.LOW)
     GPIO.output(GPIO_BCM_L293D_IN2, GPIO.HIGH)
 
 
 def left():
+    """left
+    """
     GPIO.output(GPIO_BCM_L293D_EN1, GPIO.HIGH)
     GPIO.output(GPIO_BCM_L293D_IN1, GPIO.HIGH)
     GPIO.output(GPIO_BCM_L293D_IN2, GPIO.LOW)
 
 
 def stop():
+    """stop
+    """
     GPIO.output(GPIO_BCM_L293D_EN1, GPIO.LOW)
 
 
 def destroy():
+    """destroy
+    """
     GPIO.cleanup()
 
 

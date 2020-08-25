@@ -1,4 +1,4 @@
-"""blink_led/pulse_width_modulation.py
+"""led/main_pwm.py
 """
 
 import time

@@ -1,4 +1,4 @@
-"""blink_led/main.py
+"""led/main.py
 """
 
 import time
