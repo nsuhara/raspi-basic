@@ -1,4 +1,7 @@
 """servo/main.py
+author          : nsuhara <na010210dv@gmail.com>
+date created    : 2020/8/23
+python version  : 3.7.3
 """
 
 import time
