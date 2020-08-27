@@ -12,13 +12,15 @@ from gpiozero import Button
 class Raspi():
     """Raspi
     """
+    GPIO_BCM_BUTTON1 = 15
+    GPIO_BCM_BUTTON2 = 25
 
     def __init__(self):
-        self.button1 = Button(16)
+        self.button1 = Button(self.GPIO_BCM_BUTTON1)
         self.button1.when_pressed = self.button1_pressed
         self.button1.when_released = self.button1_released
 
-        self.button2 = Button(20)
+        self.button2 = Button(self.GPIO_BCM_BUTTON2)
         self.button2.when_pressed = self.button2_pressed
         self.button2.when_released = self.button2_released
 
