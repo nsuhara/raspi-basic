@@ -3,3 +3,5 @@ __pycache__/
 .venv/
 .vscode/
 breadboard.fzz
+camera.h264
+camera.jpg
