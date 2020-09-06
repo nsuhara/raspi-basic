@@ -172,6 +172,22 @@ nameserver {secondary dns}
 ```
 
 ```command.sh
+~$ sudo nano .bashrc
+```
+
+```command.sh
+# some more ls aliases
+#alias ll='ls -l'
+#alias la='ls -A'
+#alias l='ls -CF'
++ alias ll="ls -la"
+```
+
+```command.sh
+~$ echo -e 'if [ -f ~/.bashrc ]; then\n  . ~/.bashrc\nfi' >> ~/.bash_profile
+```
+
+```command.sh
 ~$ sudo reboot
 ```
 
