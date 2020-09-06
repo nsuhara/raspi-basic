@@ -171,6 +171,10 @@ nameserver {secondary dns}
 ~$ sudo touch /boot/ssh
 ```
 
+```command.sh
+~$ sudo reboot
+```
+
 ### SSHホスト鍵削除(macOS)
 
 ```command.sh
